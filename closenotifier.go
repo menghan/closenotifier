@@ -30,8 +30,6 @@ func Hijack(w http.ResponseWriter) (buf *bufio.ReadWriter, closeNotifier <-chan 
 		return
 	}
 	closer = func() {
-		buf.WriteString("0\r\n\r\n")
-		buf.Flush()
 		buf.Reader.Reset(nil)
 		buf.Writer.Reset(nil)
 		buf = nil
